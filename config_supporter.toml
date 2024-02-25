@@ -1,0 +1,30 @@
+template_src = "~/Algorithm/src/base.cpp"
+compile_debug = """
+{{.CXX}} {{.Source}} -o {{.Output}} \
+-std=c++20 -g -DLOCAL -march=native \
+-Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion \
+-fsanitize=address,undefined -fno-omit-frame-pointer \
+-I ~/Algorithm/src \
+-I ~/ac-library \
+-I ~/yosupo-library/src \
+-I ~/fastfps/src
+"""
+compile_opt = """
+{{.CXX}} {{.Source}} -o {{.Output}} \
+-std=c++20 -g -DLOCAL -O2 -march=native \
+-Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion \
+-I ~/Algorithm/src \
+-I ~/ac-library \
+-I ~/yosupo-library/src \
+-I ~/fastfps/src
+"""
+bundle_source = """
+oj-bundle {{.Source}} \
+-I ~/Algorithm/src \
+-I ~/ac-library \
+-I ~/yosupo-library/src \
+-I ~/fastfps/src
+> {{.Output}}
+"""
+
+pbcopy = "pbcopy"
