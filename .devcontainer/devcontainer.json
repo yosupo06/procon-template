@@ -17,7 +17,8 @@
 				"ms-vscode.cpptools-extension-pack",
 				"ms-python.python",
 				"ms-toolsai.jupyter",
-				"rust-lang.rust-analyzer"
+				"rust-lang.rust-analyzer",
+				"ms-vsliveshare.vsliveshare"
 			]
 		}
 	}
