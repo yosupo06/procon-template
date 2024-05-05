@@ -1,8 +1,8 @@
-template_src = "~/Algorithm/src/base.cpp"
+template_src = "~/yosupo-library/src/yosupo/template.cpp"
 compile_debug = """
 {{.CXX}} {{.Source}} -o {{.Output}} \
 -std=c++20 -g -DYOSUPO_LOCAL -march=native \
--Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion \
+-Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion -Wno-unused-variable \
 -fsanitize=address,undefined -fno-omit-frame-pointer \
 -I ~/Algorithm/src \
 -I ~/ac-library \
@@ -12,7 +12,7 @@ compile_debug = """
 compile_opt = """
 {{.CXX}} {{.Source}} -o {{.Output}} \
 -std=c++20 -g -DYOSUPO_LOCAL -O2 -march=native \
--Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion \
+-Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion -Wno-unused-variable \
 -I ~/Algorithm/src \
 -I ~/ac-library \
 -I ~/yosupo-library/src \
