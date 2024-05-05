@@ -3,9 +3,17 @@
 set -e
 
 sudo apt-get update
+
+# clang
+sudo apt-get install -y lsb-release wget software-properties-common gnupg
+sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+
 sudo apt-get install -y sqlite3 xsel
 
-pip install psytester online-judge-tools online-judge-verify-helper ipykernel
+# oj
+pip install online-judge-tools online-judge-verify-helper
+
+pip install psytester ipykernel
 
 cargo install cargo-generate
 

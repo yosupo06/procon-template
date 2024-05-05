@@ -1,7 +1,7 @@
 template_src = "~/Algorithm/src/base.cpp"
 compile_debug = """
 {{.CXX}} {{.Source}} -o {{.Output}} \
--std=c++20 -g -DLOCAL -march=native \
+-std=c++20 -g -DYOSUPO_LOCAL -march=native \
 -Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion \
 -fsanitize=address,undefined -fno-omit-frame-pointer \
 -I ~/Algorithm/src \
@@ -11,7 +11,7 @@ compile_debug = """
 """
 compile_opt = """
 {{.CXX}} {{.Source}} -o {{.Output}} \
--std=c++20 -g -DLOCAL -O2 -march=native \
+-std=c++20 -g -DYOSUPO_LOCAL -O2 -march=native \
 -Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion \
 -I ~/Algorithm/src \
 -I ~/ac-library \
