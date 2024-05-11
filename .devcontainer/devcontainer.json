@@ -13,13 +13,29 @@
 	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
 	"customizations": {
 		"vscode": {
+			"settings": {
+				"C_Cpp.intelliSenseEngine": "disabled",
+				"clangd.path": "clangd-18",
+				"clangd.fallbackFlags": [
+					"-Wall",
+					"-Wextra",
+					"-Wshadow",
+					"-Wconversion",
+					"-Wno-sign-conversion",
+					"-std=c++20",
+					"-DYOSUPO_LOCAL",
+					"-I",
+					"/home/vscode/yosupo-library/src",
+					"-I",
+					"/home/vscode/fastfps/src"
+				]
+			},
 			"extensions": [
-				"ms-vscode.cpptools-extension-pack",
+				"llvm-vs-code-extensions.vscode-clangd",
 				"ms-python.python",
 				"ms-toolsai.jupyter",
 				"rust-lang.rust-analyzer",
-				"ms-vsliveshare.vsliveshare",
-				"llvm-vs-code-extensions.vscode-clangd"
+				"ms-vsliveshare.vsliveshare"
 			]
 		}
 	}
