@@ -62,11 +62,27 @@
 							"label": "cpp: test",
 							"command": "cxx_test.sh",
 							"args": [
-								"${file}"
+								"${file}",
+								"-g",
+								"-fsanitize=undefined,address"
 							],
 							"group": {
 								"kind": "test",
 								"isDefault": true
+							}
+						},
+						{
+							"type": "process",
+							"label": "cpp: test (opt)",
+							"command": "cxx_test.sh",
+							"args": [
+								"${file}",
+								"-g",
+								"-fsanitize=undefined,address"
+							],
+							"group": {
+								"kind": "test",
+								"-O2"
 							}
 						},
 						{

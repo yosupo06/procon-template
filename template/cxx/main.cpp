@@ -9,4 +9,6 @@ using namespace yosupo;
 Scanner sc = Scanner(stdin);
 Printer pr = Printer(stdout);
 
-int main() { return 0; }
+int main() {
+    return 0;
+}
