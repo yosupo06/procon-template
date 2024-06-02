@@ -81,8 +81,7 @@
 								"-fsanitize=undefined,address"
 							],
 							"group": {
-								"kind": "test",
-								"-O2"
+								"kind": "test"
 							}
 						},
 						{
@@ -93,7 +92,7 @@
 								"${file}"
 							],
 							"group": {
-								"kind": "test"
+								"kind": "none"
 							}
 						}
 					]
