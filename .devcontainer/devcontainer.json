@@ -8,6 +8,9 @@
 		"ghcr.io/devcontainers/features/common-utils:2": {}
 	},
 	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+	"remoteEnv": {
+		"PATH": "${containerEnv:PATH}:/home/vscode/.local/bin:${containerWorkspaceFolder}/scripts"
+	},
 	"customizations": {
 		"vscode": {
 			"settings": {
@@ -22,17 +25,85 @@
 					"-std=c++20",
 					"-DYOSUPO_LOCAL",
 					"-I",
+					"/home/vscode/ac-library",
+					"-I",
 					"/home/vscode/yosupo-library/src",
 					"-I",
 					"/home/vscode/fastfps/src"
-				]
+				],
+				"tasks": {
+					"tasks": [
+						{
+							"type": "process",
+							"label": "cpp: build",
+							"command": "cxx_build.sh",
+							"args": [
+								"${file}",
+								"-g",
+								"-fsanitize=undefined,address"
+							],
+							"group": {
+								"kind": "build"
+							}
+						},
+						{
+							"type": "process",
+							"label": "cpp: build (opt)",
+							"command": "cxx_build.sh",
+							"args": [
+								"${file}",
+								"-O2"
+							],
+							"group": {
+								"kind": "build"
+							}
+						},
+						{
+							"type": "process",
+							"label": "cpp: test",
+							"command": "cxx_test.sh",
+							"args": [
+								"${file}"
+							],
+							"group": {
+								"kind": "test",
+								"isDefault": true
+							}
+						},
+						{
+							"type": "process",
+							"label": "cpp: bundle",
+							"command": "cxx_bundle.sh",
+							"args": [
+								"${file}"
+							],
+							"group": {
+								"kind": "test"
+							}
+						}
+					]
+				},
+				"launch": {
+					"version": "0.2.0",
+					"configurations": [
+						{
+							"name": "cpp: debug",
+							"type": "lldb",
+							"request": "launch",
+							"program": "${fileDirname}/${fileBasenameNoExtension}",
+							"preLaunchTask": "cpp: build"
+						}
+					],
+					"compounds": []
+				}
 			},
 			"extensions": [
+				"ms-vsliveshare.vsliveshare",
 				"llvm-vs-code-extensions.vscode-clangd",
+				"vadimcn.vscode-lldb",
 				"ms-python.python",
 				"ms-toolsai.jupyter",
-				"rust-lang.rust-analyzer",
-				"ms-vsliveshare.vsliveshare"
+				"rust-lang.rust-analyzer"
 			]
 		}
 	}
