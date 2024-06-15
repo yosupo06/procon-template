@@ -91,6 +91,7 @@
 							"args": [
 								"${file}"
 							],
+							"problemMatcher": [],
 							"group": {
 								"kind": "none"
 							}

@@ -10,6 +10,11 @@ if [ -z "$file_name" ]; then
     exit 1
 fi
 
+if [[ "$file_name" != *.cpp ]]; then
+    echo "Error: The source file must have a .cpp extension."
+    exit 1
+fi
+
 echo "[build] $file_name"
 
 clang++-18 $file_name -o $output_file \
