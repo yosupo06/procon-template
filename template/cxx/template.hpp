@@ -26,7 +26,7 @@ using std::abs, std::pow, std::sqrt;
 using std::array, std::vector, std::string, std::queue, std::deque;
 using std::countl_zero, std::countl_one, std::countr_zero, std::countr_one;
 using std::istream, std::ostream, std::cerr, std::endl;
-using std::min, std::max;
+using std::min, std::max, std::swap;
 using std::pair, std::tuple, std::bitset;
 using std::popcount;
 using std::priority_queue, std::set, std::multiset, std::map;
