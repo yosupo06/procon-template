@@ -8,6 +8,11 @@ if [ -z "$file_name" ]; then
     exit 1
 fi
 
+if [[ "$file_name" != *.cpp ]]; then
+    echo "Error: The source file must have a .cpp extension."
+    exit 1
+fi
+
 oj-bundle $file_name \
 -I $HOME/ac-library \
 -I $HOME/yosupo-library/src \
