@@ -4,7 +4,7 @@
 #include "yosupo/fastio.hpp"
 using namespace yosupo;
 
-#include "./template.hpp"
+#include "./base.hpp"
 
 Scanner sc = Scanner(stdin);
 Printer pr = Printer(stdout);
