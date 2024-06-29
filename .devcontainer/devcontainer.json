@@ -30,6 +30,9 @@
 					"-I",
 					"/home/vscode/fastfps/src"
 				],
+				"[cpp]": {
+					"editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+				},
 				"tasks": {
 					"tasks": [
 						{
