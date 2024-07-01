@@ -17,7 +17,7 @@ fi
 
 echo "[build] $file_name"
 
-clang++-18 $file_name -o $output_file \
+clang++ $file_name -o $output_file \
 -std=c++20 \
 -Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion \
 -march=native \
