@@ -64,12 +64,41 @@
 						},
 						{
 							"type": "process",
+							"label": "cpp: run",
+							"command": "cxx_run.sh",
+							"args": [
+								"${file}"
+							],
+							"dependsOn": [
+								"cpp: build"
+							],
+							"group": {
+								"kind": "test"
+							}
+						},
+						{
+							"type": "process",
+							"label": "cpp: run (opt)",
+							"command": "cxx_run.sh",
+							"args": [
+								"${file}"
+							],
+							"dependsOn": [
+								"cpp: build (opt)"
+							],
+							"group": {
+								"kind": "test"
+							}
+						},
+						{
+							"type": "process",
 							"label": "cpp: test",
 							"command": "cxx_test.sh",
 							"args": [
-								"${file}",
-								"-g",
-								"-fsanitize=undefined,address"
+								"${file}"
+							],
+							"dependsOn": [
+								"cpp: build"
 							],
 							"group": {
 								"kind": "test",
@@ -81,8 +110,10 @@
 							"label": "cpp: test (opt)",
 							"command": "cxx_test.sh",
 							"args": [
-								"${file}",
-								"-O2"
+								"${file}"
+							],
+							"dependsOn": [
+								"cpp: build (opt)"
 							],
 							"group": {
 								"kind": "test"

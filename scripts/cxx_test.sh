@@ -2,8 +2,6 @@
 
 set -e
 
-cxx_build.sh $@
-
 file_name=$1
 output_file=${file_name%.cpp}
 tests_dir=$(dirname $file_name)/tests
