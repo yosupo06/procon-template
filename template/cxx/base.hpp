@@ -1,10 +1,5 @@
 #pragma once
 
-#ifdef YOSUPO_AVX2_PRAGMA
-#include <vector>
-#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
-#endif
-
 #include <algorithm>
 #include <array>
 #include <bit>

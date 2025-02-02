@@ -1,5 +1,10 @@
-#define YOSUPO_AVX2_PRAGMA
 // #undef YOSUPO_LOCAL
+
+#if 0 and !defined(__clang__)
+#include <vector>
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+#pragma GCC optimize("Ofast")
+#endif
 
 #include "yosupo/fastio.hpp"
 using namespace yosupo;

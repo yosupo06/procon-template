@@ -65,10 +65,7 @@
 						{
 							"type": "process",
 							"label": "cpp: run",
-							"command": "cxx_run.sh",
-							"args": [
-								"${file}"
-							],
+							"command": "${fileDirname}${/}${fileBasenameNoExtension}",
 							"dependsOn": [
 								"cpp: build"
 							],
@@ -79,10 +76,7 @@
 						{
 							"type": "process",
 							"label": "cpp: run (opt)",
-							"command": "cxx_run.sh",
-							"args": [
-								"${file}"
-							],
+							"command": "${fileDirname}${/}${fileBasenameNoExtension}",
 							"dependsOn": [
 								"cpp: build (opt)"
 							],
@@ -93,9 +87,9 @@
 						{
 							"type": "process",
 							"label": "cpp: test",
-							"command": "cxx_test.sh",
+							"command": "test.py",
 							"args": [
-								"${file}"
+								"${fileDirname}${/}${fileBasenameNoExtension}",
 							],
 							"dependsOn": [
 								"cpp: build"
@@ -108,9 +102,9 @@
 						{
 							"type": "process",
 							"label": "cpp: test (opt)",
-							"command": "cxx_test.sh",
+							"command": "test.py",
 							"args": [
-								"${file}"
+								"${fileDirname}${/}${fileBasenameNoExtension}",
 							],
 							"dependsOn": [
 								"cpp: build (opt)"

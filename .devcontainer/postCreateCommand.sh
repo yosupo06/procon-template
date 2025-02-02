@@ -4,6 +4,9 @@ set -e
 
 sudo apt-get update
 
+# test.py
+pip install rich
+
 # oj
 pip install online-judge-tools online-judge-verify-helper
 
