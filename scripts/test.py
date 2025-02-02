@@ -35,48 +35,43 @@ class Result:
     diff: str = ""
 
 
-def run(target: Path, test: Path, quiet: bool) -> Result:
+def run(target: Path, test: Path) -> Result:
     name = test.name
+    actual_file = test.with_suffix('.actual')
 
     with test.open('r') as f:
         start = time.perf_counter()
         process = subprocess.Popen(
             [target], stdin=f, stdout=subprocess.PIPE, text=True)
-        actual = ""
-        for line in process.stdout:
-            actual += line
-            if not quiet:
-                print(line, end="", flush=True)
-        process.wait()
+        tee_process = subprocess.Popen(
+            ['tee', actual_file], stdin=process.stdout, text=True)
+        tee_process.wait()
         end = time.perf_counter()
-
     consumed = end - start
-    actual = actual.rstrip()
 
     answer_file = test.with_suffix('.out')
     if not answer_file.exists():
         return Result(name, Status.SKIP, consumed)
+
+    with actual_file.open('r') as f:
+        actual = f.read().rstrip()
     with answer_file.open('r') as f:
         expect = f.read().rstrip()
-        actual_lines = [line.rstrip() for line in actual.splitlines()]
-        expect_lines = [line.rstrip() for line in expect.splitlines()]
-        actual_norm = "\n".join(actual_lines)
-        expect_norm = "\n".join(expect_lines)
-        if actual_norm != expect_norm:
-            diff = "\n".join(difflib.unified_diff(
-                expect_lines, actual_lines,
-                fromfile='expected', tofile='actual', lineterm=''))
-            return Result(name, Status.FAIL, consumed, diff)
-        else:
-            return Result(name, Status.PASS, consumed)
+
+    actual_lines = [line.rstrip() for line in actual.splitlines()]
+    expect_lines = [line.rstrip() for line in expect.splitlines()]
+    if "\n".join(actual_lines) != "\n".join(expect_lines):
+        diff = "\n".join(difflib.unified_diff(
+            expect_lines, actual_lines,
+            fromfile='expected', tofile='actual', lineterm=''))
+        return Result(name, Status.FAIL, consumed, diff)
+    return Result(name, Status.PASS, consumed)
 
 
 def main():
     parser = argparse.ArgumentParser(description='Run tests.')
     parser.add_argument('target', help='The executable to test.')
-    parser.add_argument('-q', '--quiet', action='store_true', help='Do not output the test results.')
     args = parser.parse_args()
-    quiet = args.quiet
     target = Path(args.target)
 
     tests_dir = target.parent / 'tests'
@@ -87,7 +82,7 @@ def main():
     for test in sorted(tests_dir.glob('*.in')):
         console.print(f"[TEST] {test.name}", style="bold blue")
 
-        result = run(target, test, quiet)
+        result = run(target, test)
         results.append(result)
 
         console.print(f"[{result.status.name}] {test.name} {result.time:.3f} secs",
