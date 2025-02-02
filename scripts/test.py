@@ -44,7 +44,7 @@ def run(target: Path, test: Path) -> Result:
             [target], stdin=f, stdout=subprocess.PIPE, text=True)
         actual = ""
         for line in process.stdout:
-            print(line, end="")
+            print(line, end="", flush=True)
             actual += line
         process.wait()
         end = time.perf_counter()
