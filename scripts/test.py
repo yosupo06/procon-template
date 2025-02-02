@@ -23,7 +23,7 @@ def get_color(result: Status) -> str:
     return {
         Status.PASS: "green",
         Status.FAIL: "red",
-        Status.SKIP: "yellow"
+        Status.SKIP: "cyan"
     }.get(result, "white")
 
 
@@ -35,7 +35,7 @@ class Result:
     diff: str = ""
 
 
-def run(target: Path, test: Path) -> Result:
+def run(target: Path, test: Path, quiet: bool) -> Result:
     name = test.name
 
     with test.open('r') as f:
@@ -44,8 +44,9 @@ def run(target: Path, test: Path) -> Result:
             [target], stdin=f, stdout=subprocess.PIPE, text=True)
         actual = ""
         for line in process.stdout:
-            print(line, end="", flush=True)
             actual += line
+            if not quiet:
+                print(line, end="", flush=True)
         process.wait()
         end = time.perf_counter()
 
@@ -73,7 +74,9 @@ def run(target: Path, test: Path) -> Result:
 def main():
     parser = argparse.ArgumentParser(description='Run tests.')
     parser.add_argument('target', help='The executable to test.')
+    parser.add_argument('-q', '--quiet', action='store_true', help='Do not output the test results.')
     args = parser.parse_args()
+    quiet = args.quiet
     target = Path(args.target)
 
     tests_dir = target.parent / 'tests'
@@ -84,7 +87,7 @@ def main():
     for test in sorted(tests_dir.glob('*.in')):
         console.print(f"[TEST] {test.name}", style="bold blue")
 
-        result = run(target, test)
+        result = run(target, test, quiet)
         results.append(result)
 
         console.print(f"[{result.status.name}] {test.name} {result.time:.3f} secs",
