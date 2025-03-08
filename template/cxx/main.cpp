@@ -7,7 +7,6 @@
 #endif
 
 #include "yosupo/fastio.hpp"
-using namespace yosupo;
 
 #include "./base.hpp"
 
