@@ -4,6 +4,9 @@ set -e
 
 sudo apt-get update
 
+# gnu time
+sudo apt-get install -y time
+
 # test.py
 pip install rich
 

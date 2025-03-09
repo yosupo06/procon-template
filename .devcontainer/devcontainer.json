@@ -65,7 +65,11 @@
 						{
 							"type": "process",
 							"label": "cpp: run",
-							"command": "${fileDirname}${/}${fileBasenameNoExtension}",
+							"command": "time",
+							"args": [
+								"-v",
+								"${fileDirname}${/}${fileBasenameNoExtension}"
+							],
 							"dependsOn": [
 								"cpp: build"
 							],
@@ -76,7 +80,11 @@
 						{
 							"type": "process",
 							"label": "cpp: run (opt)",
-							"command": "${fileDirname}${/}${fileBasenameNoExtension}",
+							"command": "time",
+							"args": [
+								"-v",
+								"${fileDirname}${/}${fileBasenameNoExtension}"
+							],
 							"dependsOn": [
 								"cpp: build (opt)"
 							],
