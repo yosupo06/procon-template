@@ -43,6 +43,7 @@
 							"command": "cxx_build.sh",
 							"args": [
 								"${file}",
+								"-Og",
 								"-g",
 								"-fsanitize=undefined,address"
 							],
