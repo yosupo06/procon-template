@@ -1,12 +1,12 @@
 {
-	"image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04",
+	"image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-24.04",
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
 		"ghcr.io/devcontainers/features/rust:1": {},
 		"ghcr.io/devcontainers/features/python:1": {},
 		"ghcr.io/devcontainers-community/features/llvm:3": {
-			"version": 18
+			"version": 19
 		}
 	},
 	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
@@ -96,8 +96,10 @@
 						{
 							"type": "process",
 							"label": "cpp: test",
-							"command": "test.py",
+							"command": "pipx",
 							"args": [
+								"run",
+								"${workspaceFolder}/scripts/test.py",
 								"${fileDirname}${/}${fileBasenameNoExtension}",
 							],
 							"dependsOn": [
@@ -111,8 +113,10 @@
 						{
 							"type": "process",
 							"label": "cpp: test (opt)",
-							"command": "test.py",
+							"command": "pipx",
 							"args": [
+								"run",
+								"${workspaceFolder}/scripts/test.py",
 								"${fileDirname}${/}${fileBasenameNoExtension}",
 							],
 							"dependsOn": [

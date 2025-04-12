@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-# Requires-Module: rich
+# /// script
+# dependencies = ["rich"]
+# ///
 
 from enum import Enum
 import subprocess

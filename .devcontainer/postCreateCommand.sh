@@ -7,17 +7,13 @@ sudo apt-get update
 # gnu time
 sudo apt-get install -y time
 
-# test.py
-pip install rich
-
-# oj
-pip install online-judge-tools online-judge-verify-helper
+# oj-bundle
+pipx install online-judge-verify-helper
 
 # marathon
-pip install psytester ipykernel
+pipx install psytester
 
 # library
 git clone https://github.com/atcoder/ac-library $HOME/ac-library
 git clone https://github.com/yosupo06/yosupo-library $HOME/yosupo-library
 git clone https://github.com/yosupo06/Algorithm $HOME/Algorithm
-git clone https://github.com/yosupo06/fastfps $HOME/fastfps
