@@ -16,4 +16,4 @@ fi
 oj-bundle $file_name \
 -I $HOME/ac-library \
 -I $HOME/yosupo-library/src \
--I $HOME/fastfps/src | sed '/^#line/d' > $output_file
+| sed '/^#line/d' > $output_file
